@@ -1,0 +1,60 @@
+public class tp1_2{
+	
+	public static String GenBean(String s, int n){
+	
+			if (n==0) return s+" ";
+			else {
+				return GenBean(s+"0",n-1) + GenBean(s+"1",n-1);		
+			}
+	}
+	
+	public static String GenPanzani( String s, int n) {
+			if (n==0) return s+" ";
+			else if( n== 1) 
+				return GenPanzani(s+"0",0)+GenPanzani(s+"1",0);
+			else {	
+				return GenPanzani(s+"0",n-1) + GenPanzani(s+"10",n-2);	
+				
+			}	
+	}
+	public static String GenOrange(String s, int n,boolean sens){//indique si on a déjà échangé ou non.
+		if (n==0) return s+" ";
+			else {
+				if (sens)
+					return GenOrange(s+"0",n-1,true) + GenOrange(s+"1",n-1,false);	
+				else
+					return GenOrange(s+"1",n-1,true) + GenOrange(s+"0",n-1,false);	
+			}	
+	}
+	
+	public static String GenConCarne(String s, int n,int k){
+		
+		if (n==0) return s+" ";
+		else if (k==0) return GenConCarne(s+"0",n-1,k);
+		else if (k==n)	return GenConCarne(s+"1",n-1,k-1);
+		else return	GenConCarne(s+"0",n-1,k) + GenConCarne(s+"1",n-1,k-1);
+	}
+	
+	public static String GenMoby(String s, int n,int k){
+		if (n==0) return s+" ";
+		else if (n==2*k) return GenMoby(s+"1",n-1,k-1);
+		else if (k==0) return GenMoby(s+"0", n-1, k);
+		else if(n>k)  return GenMoby(s+"0",n-1,k) + GenMoby(s+"1",n-1,k-1);
+		return "";
+	}
+	
+	public static String Concombre(String s, int n,int k){
+		if (k==0) return s+" ";
+		else if (n>=k && compteur<=n )
+			 return Concombre(s,n-1,k)+Concombre(n+s,n-1,k-1);
+		return "";
+	}
+	
+	
+	public static void main(String arg[]){
+		
+		String s=Concombre("",5,3);
+		System.out.println("chaine: "+s);
+			
+	}
+}
